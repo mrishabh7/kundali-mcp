@@ -1,0 +1,17 @@
+# Render.com blueprint — deploy the Kundali MCP server as a live HTTPS service.
+# Create a private repo, push, then on Render: New + → Blueprint → pick the repo.
+services:
+  - type: web
+    name: kundali-mcp
+    runtime: python
+    plan: free                      # free spins down when idle; "starter" stays on
+    buildCommand: pip install -r requirements.txt
+    startCommand: python mcp_server.py
+    envVars:
+      - key: KUNDALI_TRANSPORT
+        value: http                 # serve streamable HTTP (Render sets $PORT)
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      # Optional: lock to your Render host instead of allowing any Host header:
+      # - key: KUNDALI_ALLOWED_HOSTS
+      #   value: kundali-mcp.onrender.com

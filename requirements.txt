@@ -1,0 +1,5 @@
+# Kundali MCP server (local Swiss Ephemeris compute)
+mcp[cli]>=1.2          # Model Context Protocol server SDK (FastMCP)
+pyswisseph>=2.10       # Swiss Ephemeris — sidereal positions, ascendant, nodes
+timezonefinder>=6.5    # offline coordinate -> IANA timezone
+requests>=2.31         # used only for optional place geocoding (Nominatim)
