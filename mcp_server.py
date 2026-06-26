@@ -241,6 +241,16 @@ def _fmt_yogas(b: J.Birth) -> str:
 
 
 # --------------------------------------------------------------------------- #
+# Health check (so platform GET / probes pass; MCP itself lives at /mcp)
+# --------------------------------------------------------------------------- #
+@mcp.custom_route("/", methods=["GET"])
+async def health(_request):
+    from starlette.responses import JSONResponse
+    return JSONResponse({"status": "ok", "service": "kundali-mcp",
+                         "mcp_endpoint": "/mcp"})
+
+
+# --------------------------------------------------------------------------- #
 # Tools
 # --------------------------------------------------------------------------- #
 @mcp.tool(description=
